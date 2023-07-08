@@ -2,11 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Navbar from '../components/Navbar';
 import apple from '../assets/apple.jpg';
 import camera from '../assets/camera.jpg';
 import vape from '../assets/vape.jpg';
-
 
 const Carousel = () => {
     const settings = {
@@ -14,7 +12,9 @@ const Carousel = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
     };
 
     return (
