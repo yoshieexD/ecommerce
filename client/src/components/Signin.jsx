@@ -16,7 +16,7 @@ const Signin = () => {
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
                     <div className="d-grid gap-2">
-                        <button className="btn btn-primary pb-3 fs-5" type="button">Login</button>
+                        <button className="btn btn-dark pb-3 fs-5" type="button">Login</button>
                     </div>
                 </form>
             </div>
