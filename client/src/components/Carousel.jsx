@@ -18,16 +18,16 @@ const Carousel = () => {
     };
 
     return (
-        <div style={{ width: "100%", maxWidth: "750px", margin: "0 auto" }}>
+        <div style={{ width: "100%", maxWidth: "950px", margin: "0 auto" }}>
             <Slider {...settings}>
                 <div>
-                    <img src={apple} alt="Apple" style={{ width: "100%" }} />
+                    <img src={apple} alt="Apple" style={{ width: "100%", height: "400px" }} />
                 </div>
                 <div>
-                    <img src={camera} alt="Camera" style={{ width: "100%" }} />
+                    <img src={camera} alt="Camera" style={{ width: "100%", height: "400px" }} />
                 </div>
                 <div>
-                    <img src={vape} alt="Vape" style={{ width: "100%" }} />
+                    <img src={vape} alt="Vape" style={{ width: "100%", height: "400px" }} />
                 </div>
             </Slider>
         </div>
