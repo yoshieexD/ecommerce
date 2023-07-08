@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Signin.css'
+
 const Signin = () => {
     return (
         <div className='container'>
@@ -13,7 +14,7 @@ const Signin = () => {
                     <input type="password" className="form-control form-control-lg" id="floatingPassword" placeholder="Password" />
                     <label htmlFor="floatingPassword">Password</label>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg mt-2">Login</button>
+                <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
             </form>
         </div>
     );
