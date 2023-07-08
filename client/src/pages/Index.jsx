@@ -1,20 +1,20 @@
 import React from 'react';
-import '../css/index.css'
+import { useState } from 'react';
+import { Paper, Chip } from '@mui/material';
+import '../app.css'
 const Index = () => {
+    const [checked, setChecked] = useState(false);
+
+    const handleChange = (event) => {
+        setChecked(event.target.checked)
+    };
+
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" placeholder="Enter your email" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" placeholder="Enter your password" />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+        <div>
+            <Paper elevation={3}>
+                <Chip label="login" color="primary"
+                    variant='outlined' />
+            </Paper>
         </div>
     );
 };
