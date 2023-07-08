@@ -1,10 +1,10 @@
 import React from 'react';
-import Signin from '../components/Signin';
+import Navbar from '../components/Navbar';
 
 const Index = () => {
     return (
         <div>
-            <Signin />
+            <Navbar />
         </div>
     );
 };
