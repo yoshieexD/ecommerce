@@ -4,7 +4,7 @@ import aboutus from '../assets/aboutus.jpg'
 
 const About = () => {
     return (
-        <Layout>
+        <Layout title={'About us - Ecommerce'}>
             <div className='row contactus d-flex justify-content-center align-items-center m-auto'>
                 <div className='col-md-6 mt-3'>
                     <img src={aboutus} style={{ width: "100%" }} alt="Contact Us" />

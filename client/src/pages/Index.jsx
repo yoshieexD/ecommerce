@@ -5,8 +5,8 @@ import Layout from '../components/Layout.jsx';
 const Index = () => {
 
     return (
-        <Layout >
-            <h1>asds</h1>
+        <Layout title={'Home - Ecommerce'}>
+            < h1 > asds</ h1>
         </Layout>
     );
 };

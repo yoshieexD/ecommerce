@@ -5,7 +5,7 @@ import contactus from '../assets/contactus.jpg';
 
 const Contact = () => {
     return (
-        <Layout>
+        <Layout title={'Contact us - Ecommerce'}>
             <div className='row contactus d-flex justify-content-center align-items-center m-auto'>
                 <div className='col-md-6 mt-3'>
                     <img src={contactus} style={{ width: "100%" }} alt="Contact Us" />
