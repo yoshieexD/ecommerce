@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -14,21 +14,39 @@ const Register = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password })
-            if (res.data.success) {
-                toast.success(res.data.message);
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password });
+            if (res && res.data.success) {
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: res.data.message,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Thanks!',
+                });
                 navigate('/login');
-            }
-            else {
-                toast.error(res.data.message)
+            } else {
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.data.message,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Ok',
+                });
             }
         } catch (error) {
-            console.log(error)
-            toast.error('Something went wrong');
+            console.log(error);
+            await Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Please try again.',
+                showConfirmButton: true,
+                confirmButtonText: 'Ok',
+            });
         }
     };
+
     return (
         <Layout title={'Register - Ecommerce'}>
             <div className="register">
