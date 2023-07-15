@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the server!');
 });
 //routes 
-app.use('/api/v1/auth', authRoute)
+app.use('/api/v1/auth', authRoute);
 // Listen to the port
 app.listen(port, () => {
     console.log(`Server running on ${process.env.DEV_MODE} mode on port ${port}`.bgCyan.white);
