@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+axios.defaults.withCredentials = true;
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -16,25 +17,12 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const apiURL = 'https://ecommerce-api-yoshieexd.vercel.app/api/v1/auth/register';
-            const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-
-            const response = await fetch(proxyURL + apiURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, phone, address, password }),
-            });
-
-            const data = await response.text();
-            const jsonData = JSON.parse(data);
-
-            if (response.ok && jsonData.success) {
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password }, { withCredentials: true });
+            if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: jsonData.message,
+                    text: res.data.message,
                     showConfirmButton: true,
                     confirmButtonText: 'Thanks!',
                 });
@@ -43,7 +31,7 @@ const Register = () => {
                 await Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: jsonData.message,
+                    text: res.data.message,
                     showConfirmButton: true,
                     confirmButtonText: 'Ok',
                 });
