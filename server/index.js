@@ -19,7 +19,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-    origin: import.meta.env.VITE_REACT_APP_API_URL,
+    origin: process.env.VITE_REACT_APP_API_URL,
     methods: ["GET", "POST"],
 }));
 app.use(cors());
