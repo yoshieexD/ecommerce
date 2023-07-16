@@ -4,11 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const Register = () => {
-    const [name, setName] = useState("");
+const Login = () => {
     const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -16,7 +13,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password });
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/login`, { email, password });
             if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',
@@ -25,7 +22,7 @@ const Register = () => {
                     showConfirmButton: true,
                     confirmButtonText: 'Thanks!',
                 });
-                navigate('/login');
+                navigate('/');
             } else {
                 await Swal.fire({
                     icon: 'error',
@@ -48,27 +45,18 @@ const Register = () => {
     };
 
     return (
-        <Layout title={'Register - Ecommerce'}>
+        <Layout title={'Login - Ecommerce'}>
             <div className="register">
-                <h1>Register Form</h1>
+                <h1>Login Form</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <input type="text" className="form-control" id="nameInput" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} required />
-                    </div>
-                    <div className="mb-3">
                         <input type="email" className="form-control" id="emailInput" placeholder='Enter your email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" className="form-control" id="phoneInput" placeholder='Enter your phone' value={phone} onChange={(e) => setPhone(e.target.value)} required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" className="form-control" id="addressInput" placeholder='Enter your address' value={address} onChange={(e) => setAddress(e.target.value)} required />
                     </div>
                     <div className="mb-3">
                         <input type="password" className="form-control" id="passwordInput" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <div class="d-grid gap-2">
-                        <button type="submit" className="btn btn-dark">Register</button>
+                        <button type="submit" className="btn btn-dark">Login</button>
                     </div>
                 </form>
             </div>
@@ -76,4 +64,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
