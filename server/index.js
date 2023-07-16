@@ -18,6 +18,10 @@ dotenv.config();
 connectDB();
 
 // Middlewares
+app.use(cors({
+    origin: import.meta.env.VITE_REACT_APP_API_URL,
+    methods: ["GET", "POST"],
+}));
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
