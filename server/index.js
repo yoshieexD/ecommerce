@@ -12,7 +12,7 @@ const port = process.env.PORT || 8000;
 // Configure env
 dotenv.config();
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app', 'https://ecommerce-api-yoshieexd.vercel.app'],
+    origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app'],
     methods: ["GET", "POST"], // Allow only "GET" and "POST" methods from the specified origins
 };
 
@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/v1/auth', authRoute);
+
 
 // Listen to the port
 app.listen(port, () => {

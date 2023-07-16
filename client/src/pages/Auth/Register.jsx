@@ -16,12 +16,25 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password }, { withCredentials: true });
-            if (res && res.data.success) {
+            const apiURL = 'https://ecommerce-api-yoshieexd.vercel.app/api/v1/auth/register';
+            const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+
+            const response = await fetch(proxyURL + apiURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, phone, address, password }),
+            });
+
+            const data = await response.text();
+            const jsonData = JSON.parse(data);
+
+            if (response.ok && jsonData.success) {
                 await Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: res.data.message,
+                    text: jsonData.message,
                     showConfirmButton: true,
                     confirmButtonText: 'Thanks!',
                 });
@@ -30,7 +43,7 @@ const Register = () => {
                 await Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: res.data.message,
+                    text: jsonData.message,
                     showConfirmButton: true,
                     confirmButtonText: 'Ok',
                 });
