@@ -12,15 +12,23 @@ const port = process.env.PORT || 8000;
 // Configure env
 dotenv.config();
 const corsOptions = {
-    origin: 'https://ecommerce-front-navy.vercel.app', // Replace with the actual URL of your frontend application
-    credentials: true,
+    origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app/'], // Replace with the actual URL of your frontend application
 };
 
 // Database config
 connectDB();
 
 // Middlewares
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: function (origin, callback) {
+        if (corsOptions.origin.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -28,7 +36,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the server!');
 });
 
-//routes 
+// Routes
 app.use('/api/v1/auth', authRoute);
 
 // Listen to the port

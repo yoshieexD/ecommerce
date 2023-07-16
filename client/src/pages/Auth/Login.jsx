@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/login`, { email, password });
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/login`, { email, password }, { withCredentials: true });
             if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',

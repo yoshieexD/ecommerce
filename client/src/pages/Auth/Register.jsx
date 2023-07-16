@@ -16,7 +16,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password });
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password }, { withCredentials: true });
             if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',
