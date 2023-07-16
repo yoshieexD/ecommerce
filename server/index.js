@@ -3,39 +3,35 @@ import express from 'express';
 import colors from 'colors';
 import morgan from 'morgan';
 import cors from 'cors';
-import connectDB from './config/db.js'
-import authRoute from './routes/authRoute.js'
-
-
+import connectDB from './config/db.js';
+import authRoute from './routes/authRoute.js';
 
 const app = express();
 const port = process.env.PORT || 8000;
 
 // Configure env
 dotenv.config();
+const corsOptions = {
+    origin: 'https://ecommerce-front-navy.vercel.app/', // Replace with the actual URL of your frontend application
+    credentials: true,
+};
 
 // Database config
 connectDB();
 
 // Middlewares
-app.use(cors({
-    origin: process.env.VITE_REACT_APP_API_URL,
-    methods: ["GET", "POST"],
-}));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     res.send('Welcome to the server!');
 });
+
 //routes 
 app.use('/api/v1/auth', authRoute);
+
 // Listen to the port
 app.listen(port, () => {
-    console.log(`Server running on ${process.env.DEV_MODE} mode on port ${port}`.bgCyan.white);
-});
-
-app.get('/tae', (res) => {
-    res.send('api-testing');
+    console.log(`Server running on ${process.env.DEV_MODE} mode on port ${port}`.cyan.bgWhite);
 });
