@@ -35,3 +35,7 @@ app.use('/api/v1/auth', authRoute);
 app.listen(port, () => {
     console.log(`Server running on ${process.env.DEV_MODE} mode on port ${port}`.bgCyan.white);
 });
+
+app.get('/tae', (res) => {
+    res.send('api-testing');
+});
