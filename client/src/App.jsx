@@ -10,7 +10,8 @@ import Login from './pages/Auth/Login';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 function App() {
 
   return (
