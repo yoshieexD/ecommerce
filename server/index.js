@@ -12,7 +12,7 @@ const port = process.env.PORT || 8000;
 // Configure env
 dotenv.config();
 const corsOptions = {
-    origin: 'https://ecommerce-front-navy.vercel.app/', // Replace with the actual URL of your frontend application
+    origin: 'https://ecommerce-front-navy.vercel.app', // Replace with the actual URL of your frontend application
     credentials: true,
 };
 
