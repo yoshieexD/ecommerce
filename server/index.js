@@ -11,40 +11,19 @@ const port = process.env.PORT || 8000;
 
 // Configure env
 dotenv.config();
-// const corsOptions = {
-//     origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app'],
-//     methods: ["GET", "POST"],
-// };
 
 // Database config
 connectDB();
-// Set up CORS headers to allow requests from 'https://ecommerce-front-navy.vercel.app'
-// app.use((req, res, next) => {
-//     res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
-//     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//     res.setHeader("Access-Control-Allow-Credentials", "true"); // If you need to support credentials
-//     next();
-// });
 
+//CORS CONFIG
 app.use(cors({
     origin: 'https://ecommerce-front-navy.vercel.app',
-    methods: ['POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'], // Include 'Content-Type' in allowed headers
+    methods: ['POST', 'OPTIONS', 'GET', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header'],
     credentials: true,
 }));
 
-// Middlewares
-// app.use(cors({
-//     origin: function (origin, callback) {
-//         if (corsOptions.origin.indexOf(origin) !== -1 || !origin) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error('Not allowed by CORS'));
-//         }
-//     },
-//     credentials: true,
-// }));
+
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -55,16 +34,6 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/v1/auth', authRoute);
 
-// app.options('/api/v1/auth/register', (req, res) => {
-//     // Set CORS headers for pre-flight request
-//     res.header('Access-Control-Allow-Origin', 'https://ecommerce-front-navy.vercel.app');
-//     res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     res.header('Access-Control-Allow-Credentials', 'true');
-
-//     // Respond with 200 status for pre-flight request
-//     res.status(200).send();
-// });
 
 // Listen to the port
 app.listen(port, () => {
