@@ -23,9 +23,9 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", "true"); // Add this line
     next();
 });
-
 // Middlewares
 app.use(cors({
     origin: function (origin, callback) {
