@@ -11,32 +11,34 @@ const port = process.env.PORT || 8000;
 
 // Configure env
 dotenv.config();
-const corsOptions = {
-    origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app'],
-    methods: ["GET", "POST"],
-};
+// const corsOptions = {
+//     origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app'],
+//     methods: ["GET", "POST"],
+// };
 
 // Database config
 connectDB();
 // Set up CORS headers
+// Set up CORS headers with wildcard
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", "true"); // Add this line
+    res.setHeader("Access-Control-Allow-Credentials", "true"); // If you need to support credentials
     next();
 });
+
 // Middlewares
-app.use(cors({
-    origin: function (origin, callback) {
-        if (corsOptions.origin.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         if (corsOptions.origin.indexOf(origin) !== -1 || !origin) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     credentials: true,
+// }));
 app.use(express.json());
 app.use(morgan('dev'));
 
