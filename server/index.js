@@ -55,17 +55,16 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/v1/auth', authRoute);
 
-app.options('/api/v1/auth/register', (req, res) => {
-    // Set CORS headers for pre-flight request
-    res.header('Access-Control-Allow-Origin', 'https://ecommerce-front-navy.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', 'true');
+// app.options('/api/v1/auth/register', (req, res) => {
+//     // Set CORS headers for pre-flight request
+//     res.header('Access-Control-Allow-Origin', 'https://ecommerce-front-navy.vercel.app');
+//     res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     res.header('Access-Control-Allow-Credentials', 'true');
 
-    // Respond with 200 status for pre-flight request
-    res.status(200).send();
-});
-
+//     // Respond with 200 status for pre-flight request
+//     res.status(200).send();
+// });
 
 // Listen to the port
 app.listen(port, () => {
