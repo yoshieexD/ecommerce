@@ -18,6 +18,13 @@ const corsOptions = {
 
 // Database config
 connectDB();
+// Set up CORS headers
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 // Middlewares
 app.use(cors({
