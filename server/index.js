@@ -18,9 +18,7 @@ dotenv.config();
 
 // Database config
 connectDB();
-// Set up CORS headers
-// Set up CORS headers with wildcard
-// Set up CORS headers with specific origin
+// Set up CORS headers to allow requests from 'https://ecommerce-front-navy.vercel.app'
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
