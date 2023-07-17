@@ -20,7 +20,7 @@ dotenv.config();
 connectDB();
 // Set up CORS headers to allow requests from 'https://ecommerce-front-navy.vercel.app'
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app");
+    res.setHeader("Access-Control-Allow-Origin", "https://ecommerce-front-navy.vercel.app/register");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.setHeader("Access-Control-Allow-Credentials", "true"); // If you need to support credentials
