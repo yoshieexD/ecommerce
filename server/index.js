@@ -12,8 +12,8 @@ const port = process.env.PORT || 8000;
 // Configure env
 dotenv.config();
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://ecommerce-front-navy.vercel.app'],
-    methods: ["GET", "POST"], // Allow only "GET" and "POST" methods from the specified origins
+    origin: ['http://localhost:3000', 'http://ecommerce-front-navy.vercel.app'],
+    methods: ["GET", "POST"],
 };
 
 // Database config
