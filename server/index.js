@@ -28,9 +28,9 @@ connectDB();
 // });
 
 app.use(cors({
-    origin: "https://ecommerce-front-navy.vercel.app",
-    methods: ["POST", "OPTIONS"],
-    allowedHeaders: "*",
+    origin: 'https://ecommerce-front-navy.vercel.app',
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'], // Include 'Content-Type' in allowed headers
     credentials: true,
 }));
 
