@@ -63,7 +63,7 @@ const Login = () => {
                     <div className="mb-3">
                         <input type="password" className="form-control" id="passwordInput" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    <div class="d-grid gap-2">
+                    <div className="d-grid gap-2">
                         <button type="submit" className="btn btn-dark">Login</button>
                     </div>
                 </form>
