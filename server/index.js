@@ -17,7 +17,7 @@ connectDB();
 
 //CORS CONFIG
 app.use(cors({
-    origin: 'https://ecommerce-front-navy.vercel.app',
+    origin: ['https://ecommerce-front-navy.vercel.app', 'http://localhost:3000'],
     methods: ['POST', 'OPTIONS', 'GET', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header'],
     credentials: true,

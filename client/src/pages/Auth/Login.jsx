@@ -3,10 +3,12 @@ import Layout from '../../components/Layout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useAuth } from '../../context/auth';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { auth, setAuth } = useAuth();
     const navigate = useNavigate();
 
 
@@ -22,6 +24,12 @@ const Login = () => {
                     showConfirmButton: true,
                     confirmButtonText: 'Thanks!',
                 });
+                setAuth({
+                    ...auth,
+                    user: res.data.user,
+                    token: res.data.token,
+                })
+                localStorage.setItem('auth', JSON.stringify(res.data))
                 navigate('/');
             } else {
                 await Swal.fire({
