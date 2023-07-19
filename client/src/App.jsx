@@ -8,10 +8,12 @@ import Pagenotfound from './pages/Pagenotfound';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
 import Dashboard from './pages/user/Dashboard';
+import ForgotPassword from './pages/Auth/ForgotPassword';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import PrivateRoute from './components/Routes/Private';
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           <Route path='/' element={<Index />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/dashboard' element={<PrivateRoute />}>
             <Route path='' element={<Dashboard />} />
           </Route>

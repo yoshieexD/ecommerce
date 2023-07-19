@@ -14,5 +14,5 @@ router.get('/user-auth', requireLogin, (req, res) => {
 })
 
 //Forget Password
-router.post('/forgot-password', forgotPasswordController);
+router.post('/forgot', forgotPasswordController);
 export default router;
