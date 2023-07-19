@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../context/auth';
 
@@ -10,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const { auth, setAuth } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
 
     const handleSubmit = async (e) => {
@@ -30,7 +31,7 @@ const Login = () => {
                     token: res.data.token,
                 })
                 localStorage.setItem('auth', JSON.stringify(res.data))
-                navigate('/');
+                navigate(location.state || '/');
             } else {
                 await Swal.fire({
                     icon: 'error',
@@ -62,6 +63,9 @@ const Login = () => {
                     </div>
                     <div className="mb-3">
                         <input type="password" className="form-control" id="passwordInput" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    </div>
+                    <div className="d-grid gap-2">
+                        <button type="submit" className="btn btn-dark mb-3" onClick={() => { navigate('/forgot-password') }}>Forget Password</button>
                     </div>
                     <div className="d-grid gap-2">
                         <button type="submit" className="btn btn-dark">Login</button>

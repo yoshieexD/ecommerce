@@ -11,13 +11,14 @@ const Register = () => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password }, { withCredentials: true });
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/register`, { name, email, phone, address, password, answer }, { withCredentials: true });
             if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',
@@ -64,6 +65,9 @@ const Register = () => {
                     </div>
                     <div className="mb-3">
                         <input type="text" className="form-control" id="addressInput" placeholder='Enter your address' value={address} onChange={(e) => setAddress(e.target.value)} required />
+                    </div>
+                    <div className="mb-3">
+                        <input type="text" className="form-control" id="addressInput" placeholder='What is your favorite sports' value={answer} onChange={(e) => setAnswer(e.target.value)} required />
                     </div>
                     <div className="mb-3">
                         <input type="password" className="form-control" id="passwordInput" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
