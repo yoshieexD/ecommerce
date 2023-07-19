@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
-    const [newpassword, setNewPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/forgot`, { email, newpassword, answer }, { withCredentials: true });
+            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/auth/forgot-password`, { email, newPassword, answer }, { withCredentials: true });
             if (res && res.data.success) {
                 await Swal.fire({
                     icon: 'success',
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                         <input type="text" className="form-control" id="answerInput" placeholder='Enter your secret answer' value={answer} onChange={(e) => setAnswer(e.target.value)} required />
                     </div>
                     <div className="mb-3">
-                        <input type="password" className="form-control" id="passwordInput" placeholder='Set your new password' value={newpassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                        <input type="password" className="form-control" id="passwordInput" placeholder='Set your new password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
                     </div>
                     <div className="d-grid gap-2">
                         <button type="submit" className="btn btn-dark">Reset Password</button>

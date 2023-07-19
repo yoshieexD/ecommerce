@@ -126,13 +126,14 @@ export const forgotPasswordController = async (req, res) => {
                 message: 'Wrong Email or Answer'
             })
         }
-        const hashed = await hashedPassword(newPassword)
+        const hashed = await authHelper.hashPassword(newPassword)
         await userModel.findByIdAndUpdate(user._id, { password: hashed });
         res.status(200).send({
             success: true,
             message: "Password reset successfully",
         })
     } catch (error) {
+        console.log(error)
         res.status(500).send({
             success: false,
             message: 'something went wrong',
