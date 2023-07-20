@@ -9,12 +9,12 @@ import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
 import Dashboard from './pages/user/Dashboard';
 import ForgotPassword from './pages/Auth/ForgotPassword';
+import PrivateRoute from './components/Routes/Private';
+import AdminRoute from './components/Routes/AdminRoute'
+import AdminDashboard from './pages/Admin/AdminDashboard';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import PrivateRoute from './components/Routes/Private';
-
-
 
 function App() {
 
@@ -26,9 +26,15 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
+
           <Route path='/dashboard' element={<PrivateRoute />}>
-            <Route path='' element={<Dashboard />} />
+            <Route path='user' element={<Dashboard />} />
           </Route>
+
+          <Route path='/dashboard' element={<AdminRoute />}>
+            <Route path='admin' element={<AdminDashboard />} />
+          </Route>
+
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/policy' element={<Policy />} />
