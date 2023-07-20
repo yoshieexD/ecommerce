@@ -67,12 +67,12 @@ const Register = () => {
                         <input type="text" className="form-control" id="addressInput" placeholder='Enter your address' value={address} onChange={(e) => setAddress(e.target.value)} required />
                     </div>
                     <div className="mb-3">
-                        <input type="text" className="form-control" id="addressInput" placeholder='What is your favorite sports' value={answer} onChange={(e) => setAnswer(e.target.value)} required />
+                        <input type="text" className="form-control" id="AnswerInput" placeholder='What is your favorite sports' value={answer} onChange={(e) => setAnswer(e.target.value)} required />
                     </div>
                     <div className="mb-3">
                         <input type="password" className="form-control" id="passwordInput" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    <div class="d-grid gap-2">
+                    <div className="d-grid gap-2">
                         <button type="submit" className="btn btn-dark">Register</button>
                     </div>
                 </form>
