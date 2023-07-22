@@ -6,6 +6,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoute from './routes/authRoute.js';
 import categoryRoute from './routes/categoryRoute.js'
+import productRoute from './routes/productRoute.js'
 const app = express();
 const port = process.env.PORT || 8000;
 
@@ -34,6 +35,7 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/category', categoryRoute);
+app.use('/api/v1/product', productRoute);
 
 
 // Listen to the port
