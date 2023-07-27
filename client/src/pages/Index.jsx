@@ -2,6 +2,7 @@ import React from 'react';
 import '../global.css';
 import Layout from '../components/Layout.jsx';
 import { useAuth } from '../context/auth';
+import 'antd/dist/reset.css';
 
 const Index = () => {
     const { auth, setAuth } = useAuth();
