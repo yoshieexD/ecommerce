@@ -5,13 +5,16 @@ import AdminMenu from '../../components/AdminMenu';
 const CreateProduct = () => {
     return (
         <Layout title={'Admin Dashboard: Users List - Ecommerce'}>
-            <div className="row">
-                <div className="container-fluid m-3 p-3">
+            <div className="container-fluid m-3 p-3">
+                <div className="row">
                     <div className="col-md-3">
                         <AdminMenu />
                     </div>
-                    <div className="col-md-3"></div>
-                    Create Product
+                    <div className="col-md-9">
+                        <div className=" w-75 p-3">
+                            <h3>Create Product</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Layout>
