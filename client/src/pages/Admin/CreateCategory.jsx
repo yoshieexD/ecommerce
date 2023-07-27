@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import CategoryForm from '../../components/Forms/CategoryForm';
 import { Modal } from 'antd';
+import toast from "react-hot-toast";
 
 const CreateCategory = () => {
     const [categories, setCategories] = useState([])
@@ -63,7 +64,6 @@ const CreateCategory = () => {
     }, []);
 
     //update individual 
-
     const handleUpdate = async (e) => {
         e.preventDefault()
         try {
@@ -97,6 +97,24 @@ const CreateCategory = () => {
             });
         }
     }
+
+    //delete individual 
+    const handleDelete = async (pId) => {
+        try {
+            const { data } = await axios.delete(
+                `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/category/delete-category/${pId}`
+            );
+            if (data.success) {
+                toast.success(`category is deleted`);
+
+                getAllCategory();
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error("Somtihing went wrong");
+        }
+    };
     return (
         <Layout title={'Admin Dashboard: Create Category - Ecommerce'}>
             <div className="container-fluid m-3 p-3">
@@ -123,7 +141,7 @@ const CreateCategory = () => {
                                             <>
                                                 <td>{c.name}</td>
                                                 <td><button className="btn btn-primary ms-2" onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c); }}>Edit</button>
-                                                    <button className="btn btn-danger ms-2">Delete</button>
+                                                    <button className="btn btn-danger ms-2" onClick={() => { handleDelete(c._id) }}>Delete</button>
                                                 </td>
                                             </>
                                         </tr>
