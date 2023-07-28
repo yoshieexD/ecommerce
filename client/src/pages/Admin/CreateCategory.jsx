@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import CategoryForm from '../../components/Forms/CategoryForm';
 import { Modal } from 'antd';
-import toast from "react-hot-toast";
 
 const CreateCategory = () => {
     const [categories, setCategories] = useState([])
@@ -105,14 +104,26 @@ const CreateCategory = () => {
                 `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/category/delete-category/${pId}`
             );
             if (data.success) {
-                toast.success(`category is deleted`);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Category Deleted!',
+                    text: `The ${name} was deleted successfully.`,
+                });
 
                 getAllCategory();
             } else {
-                toast.error(data.message);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Category Deleted!',
+                    text: `The ${name} was deleting successfully.`,
+                });
             }
         } catch (error) {
-            toast.error("Somtihing went wrong");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: `An error occurred while deleting the ${name}.`,
+            });
         }
     };
     return (
