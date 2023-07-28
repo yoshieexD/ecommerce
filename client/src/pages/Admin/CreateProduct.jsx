@@ -4,7 +4,10 @@ import AdminMenu from '../../components/AdminMenu';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Select } from 'antd';
+import { Navigate } from 'react-router-dom';
 const { Option } = Select;
+
+
 
 const CreateProduct = () => {
     const [categories, setCategories] = useState([]);
@@ -38,21 +41,41 @@ const CreateProduct = () => {
     }, []);
 
     // create product
-    const handleCreate = (e) => {
-        e.preventDefault()
+    const handleCreate = async (e) => {
+        e.preventDefault();
         try {
-            const { data } = axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/product/create-product`)
+            const { data } = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/product/create-product`, {
+                name,
+                description,
+                price,
+                category,
+                quantity,
+                shipping,
+            });
+            console.log("Response data:", data); // Add this line to check the response data
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Product Created!',
+                    text: `The ${name} was created successfully.`,
+                });
+                Navigate('/');
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `An error occurred while creating the ${name}.`,
+                });
+            }
         } catch (error) {
-            console.log(error)
+            console.log(error); // Add this line to check the error
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'Oops!", "Something went wrong while creating the product.',
             });
-
         }
-
-    }
+    };
     return (
         <Layout title={'Admin Dashboard: Users List - Ecommerce'}>
             <div className="container-fluid m-3 p-3">
@@ -61,30 +84,25 @@ const CreateProduct = () => {
                         <AdminMenu />
                     </div>
                     <div className="col-md-9">
-                        <div className=" w-75 p-3">
+                        <div className="w-75 p-3">
                             <h3>Create Product</h3>
-                            <div className="m-1 w-75">
+                            <div className="m-1 w-90">
                                 <Select bordered={false} placeholder="Select a category" size='large' showSearch className='form-select mb-3' onChange={() => { setCategories }}>
                                     {categories?.map(c => (
-                                        <Option key={c._id} value={c.name}>
+                                        <Option key={c._id} value={c._id}>
                                             {c.name}
                                         </Option>
                                     ))}
 
                                 </Select>
+                            </div>
+                            <form onSubmit={handleCreate}>
                                 <div className="mb-3">
                                     <label className='btn btn-outline-secondary col-md-12'>
                                         {photo ? photo.name : "Upload Photo"}
                                         <input type="file" name="photo" accept="image/*" onChange={(e) => setPhoto(e.target.files[0])} hidden
                                         />
                                     </label>
-                                </div>
-                                <div className="mb-3">
-                                    {photo && (
-                                        <div className="text-center">
-                                            <img src={URL.createObjectURL(photo)} alt='product-photo' height={'200px'} className='img img-responsive' />
-                                        </div>
-                                    )}
                                 </div>
                                 <div className="mb-3">
                                     <input type="text" value={name} placeholder='write name' className='form-control' onChange={(e) => setName(e.target.value)} />
@@ -98,19 +116,26 @@ const CreateProduct = () => {
                                 <div className="mb-3">
                                     <input type="number" value={quantity} placeholder='write quantity' className='form-control' onChange={(e) => setQuantity(e.target.value)} />
                                 </div>
-                                <Select bordered={false} placeholder="Select shipping" size='large' showSearch className='form-select mb-3' onChange={() => { setShipping }}>
+                                <Select
+                                    bordered={false}
+                                    placeholder="Select shipping"
+                                    size='large'
+                                    showSearch
+                                    className='form-select mb-3'
+                                    onChange={(value) => setShipping(value)}
+                                >
                                     <Option value="0">No</Option>
                                     <Option value="1">Yes</Option>
                                 </Select>
-                            </div>
-                            <div className="mb-3">
-                                <button className='btn btn-primary' onClick={handleCreate}>Create Product</button>
-                            </div>
+                                <div className="mb-3">
+                                    <button type="submit" className='btn btn-primary'>Create Product</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </Layout>
+        </Layout >
     );
 };
 
